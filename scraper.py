@@ -7,7 +7,8 @@ import sqlite3
 
 page = 1 
 
-url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate&classification=6281'
+url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281&where=All%20Sydney%20NSW'
+#'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281&where=All%20Sydney%20NSW'
     
 source = requests.get(url).text
 
