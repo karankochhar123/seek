@@ -38,7 +38,7 @@ while page <= total_pages:
                     subClassificationID = data['subClassification']['id']
                     worktype = data['workType']
                     #
-                    print('Writing record '+jobID)
+                    print('Writing record '+str(jobID))
                     scraperwiki.sqlite.save(unique_keys=['jobID'], data={"jobID": jobID, "title": title,"AdvertiserID":advertiserID,"Advertiser":advertiser}) 
                    
     page = page + 1
