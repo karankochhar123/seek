@@ -1,24 +1,48 @@
-# This is a template for a Python scraper on morph.io (https://morph.io)
-# including some code snippets below that you should find helpful
+import scraperwiki
+import json
+import math
+import requests
+import sqlite3
+#
 
-# import scraperwiki
-# import lxml.html
-#
-# # Read in a page
-# html = scraperwiki.scrape("http://foo.com")
-#
-# # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
-#
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
-#
-# # An arbitrary query against the database
-# scraperwiki.sql.select("* from data where 'name'='peter'")
+page = 1 
 
-# You don't have to do things with the ScraperWiki and lxml libraries.
-# You can use whatever libraries you want: https://morph.io/documentation/python
-# All that matters is that your final data is written to an SQLite database
-# called "data.sqlite" in the current working directory which has at least a table
-# called "data".
+url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
+    
+source = requests.get(url).text
+
+source_data=json.loads(source)
+
+total_count = source_data['totalCount']
+print(total_count)
+total_pages = total_count / 20
+print(math.ceil(total_pages))
+
+while page <= total_pages:
+    
+    print('reading data from URL page '+str(page))
+    for data in source_data['data']:
+                    jobID = data['id']
+                    title = data['title']
+                    advertiser = data['advertiser']['description']
+                    advertiserID = data['advertiser']['id']
+                    area = data['area']
+                    classification = data['classification']['description']
+                    classificationID = data['classification']['id']
+                    listingDate = data['listingDate']
+                    location = data['location']
+                    locationID = data['locationId']
+                    locationWhere = data['locationWhereValue']
+                    salary = data['salary']
+                    subClassification = data['subClassification']['description']
+                    subClassificationID = data['subClassification']['id']
+                    worktype = data['workType']
+                    
+                    scraperwiki.sqlite.save(unique_keys=['jobID'], data={"jobID": jobID, "title": title}) 
+                   
+    page = page + 1
+    url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
+    
+print('Read all pages')
+conn.commit()
+conn.close() 
