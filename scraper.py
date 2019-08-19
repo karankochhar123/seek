@@ -15,7 +15,8 @@ source_data=json.loads(source)
 
 total_count = source_data['totalCount']
 print(total_count)
-total_pages = total_count / 20
+#total_pages = total_count / 20
+total_pages = 2
 print(math.ceil(total_pages))
 
 while page <= total_pages:
@@ -42,6 +43,8 @@ while page <= total_pages:
                     scraperwiki.sqlite.save(unique_keys=['jobID'], data={"jobID": jobID, "title": title,"AdvertiserID":advertiserID,"Advertiser":advertiser,"Area":area,"Classification":classification,"ClassificationID":classificationID,"Listing Date":listingDate,"Location":location,"LocationID":locationID,"LocationWhere":locationWhere,"Salary":salary,"Subclassification":subClassification,"Worktype":worktype}) 
                    
     page = page + 1
+    print(page)
     url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
+    print(url)
     
 print('Read all pages') 
