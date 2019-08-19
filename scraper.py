@@ -43,6 +43,4 @@ while page <= total_pages:
     page = page + 1
     url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
     
-print('Read all pages')
-conn.commit()
-conn.close() 
+print('Read all pages') 
