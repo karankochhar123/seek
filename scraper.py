@@ -7,7 +7,7 @@ import sqlite3
 
 page = 1 
 
-url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281&where=All%20Sydney%20NSW'
+url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281'
 #'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281&where=All%20Sydney%20NSW'
     
 source = requests.get(url).text
@@ -48,7 +48,7 @@ while page <= total_pages:
                    
     page = page + 1
     #print(page)
-    url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281&where=All%20Sydney%20NSW'
+    url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281'
     #print(url)
     
 print('Read all pages') 
