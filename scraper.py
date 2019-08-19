@@ -37,8 +37,9 @@ while page <= total_pages:
                     subClassification = data['subClassification']['description']
                     subClassificationID = data['subClassification']['id']
                     worktype = data['workType']
-                    
-                    scraperwiki.sqlite.save(unique_keys=['jobID'], data={"jobID": jobID, "title": title}) 
+                    #
+                    print('Writing record '+JobID)
+                    scraperwiki.sqlite.save(unique_keys=['jobID'], data={"jobID": jobID, "title": title,"AdvertiserID",advertiserID}) 
                    
     page = page + 1
     url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
