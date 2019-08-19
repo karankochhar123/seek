@@ -7,7 +7,7 @@ import sqlite3
 
 page = 1 
 
-url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
+url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate&classification=6281'
     
 source = requests.get(url).text
 
@@ -15,8 +15,8 @@ source_data=json.loads(source)
 
 total_count = source_data['totalCount']
 print(total_count)
-#total_pages = total_count / 20
-total_pages = 2
+total_pages = total_count / 20
+#total_pages = 2
 print(math.ceil(total_pages))
 
 while page <= total_pages:
