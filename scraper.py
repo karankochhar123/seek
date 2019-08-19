@@ -48,7 +48,7 @@ while page <= total_pages:
                    
     page = page + 1
     #print(page)
-    url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science%20&page='+str(page)+'&sortmode=ListedDate'
+    url = 'https://api.seek.com.au/v2/jobs/search?keywords=data%20science&page='+str(page)+'&classification=6281&where=All%20Sydney%20NSW'
     #print(url)
     
 print('Read all pages') 
